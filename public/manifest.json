@@ -1,0 +1,71 @@
+{
+  "name": "NoorVerse – AI Quran Companion",
+  "short_name": "NoorVerse",
+  "description": "Your modern AI Quran companion with voice Tajweed coach, prayer times, Qibla compass, Tafsir, and interactive Noorani Qaida for Android and iPhone.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#0B1320",
+  "theme_color": "#0B1320",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "lifestyle", "books"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Read Quran",
+      "short_name": "Quran",
+      "description": "Read and listen to the Holy Quran",
+      "url": "/?tab=quran",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Noorani Qaida",
+      "short_name": "Qaida",
+      "description": "Learn Arabic letters and Tajweed pronunciation",
+      "url": "/?tab=learn",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Prayer Times",
+      "short_name": "Prayer",
+      "description": "Check accurate daily prayer times & Qibla",
+      "url": "/?tab=prayer",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Digital Tasbeeh",
+      "short_name": "Tasbeeh",
+      "description": "Track your daily Dhikr with haptic counter",
+      "url": "/?tab=dhikr",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96" }]
+    }
+  ],
+  "prefer_related_applications": false
+}
