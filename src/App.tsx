@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/common/Header';
 import { BottomNav } from './components/common/BottomNav';
 import { GeometricPattern } from './components/common/GeometricPattern';
-import { HomeScreen } from './components/home/HomeScreen';
-import { QuranScreen } from './components/quran/QuranScreen';
-import { LearnScreen } from './components/learn/LearnScreen';
-import { PrayerScreen } from './components/prayer/PrayerScreen';
-import { DhikrScreen } from './components/dhikr/DhikrScreen';
-import { ProfileScreen } from './components/profile/ProfileScreen';
-import { AiLearningScreen } from './components/ai/AiLearningScreen';
-import { LoginGate } from './components/auth/LoginGate';
+import { PublicHomePage } from './components/seo/PublicHomePage';
+import { PublicQuranPage } from './components/seo/PublicQuranPage';
+import { PublicTajweedPage } from './components/seo/PublicTajweedPage';
+import { PublicAiQuranPage } from './components/seo/PublicAiQuranPage';
+import { PublicTafsirPage } from './components/seo/PublicTafsirPage';
+import { PublicPronunciationPage } from './components/seo/PublicPronunciationPage';
+import { PublicArabicRootsPage } from './components/seo/PublicArabicRootsPage';
+import { PublicIslamicLearningPage } from './components/seo/PublicIslamicLearningPage';
+import { PublicLearnPage } from './components/seo/PublicLearnPage';
+import { PublicPrayerPage } from './components/seo/PublicPrayerPage';
+import { PublicDhikrPage } from './components/seo/PublicDhikrPage';
+import { ProtectedProfilePage } from './components/profile/ProtectedProfilePage';
 import { Play, Pause, X, Volume2, SkipBack, SkipForward } from 'lucide-react';
 
-const MainContent: React.FC = () => {
+const MainLayout: React.FC = () => {
   const {
-    user,
-    activeTab,
     audioState,
     pauseAudioVerse,
     resumeAudioVerse,
@@ -26,23 +29,35 @@ const MainContent: React.FC = () => {
     playPreviousVerse,
   } = useApp();
 
-  if (!user) {
-    return <LoginGate />;
-  }
-
   return (
     <div className="min-h-screen bg-[#F7F9FC] dark:bg-[#0B1320] text-[#1F3A5F] dark:text-[#F7F9FC] transition-colors duration-300 relative flex flex-col font-sans">
       <GeometricPattern />
       <Header />
 
       <main className="flex-1 z-10">
-        {activeTab === 'home' && <HomeScreen />}
-        {activeTab === 'quran' && <QuranScreen />}
-        {activeTab === 'ai' && <AiLearningScreen />}
-        {activeTab === 'learn' && <LearnScreen />}
-        {activeTab === 'prayer' && <PrayerScreen />}
-        {activeTab === 'dhikr' && <DhikrScreen />}
-        {activeTab === 'profile' && <ProfileScreen />}
+        <Routes>
+          {/* Public SEO Friendly Routes */}
+          <Route path="/" element={<PublicHomePage />} />
+          <Route path="/quran" element={<PublicQuranPage />} />
+          <Route path="/tajweed" element={<PublicTajweedPage />} />
+          <Route path="/ai-quran" element={<PublicAiQuranPage />} />
+          <Route path="/ai" element={<Navigate to="/ai-quran" replace />} />
+          <Route path="/quran-tafsir" element={<PublicTafsirPage />} />
+          <Route path="/quran-pronunciation" element={<PublicPronunciationPage />} />
+          <Route path="/arabic-roots" element={<PublicArabicRootsPage />} />
+          <Route path="/islamic-learning" element={<PublicIslamicLearningPage />} />
+
+          {/* Standard Navigation Routes */}
+          <Route path="/learn" element={<PublicLearnPage />} />
+          <Route path="/prayer" element={<PublicPrayerPage />} />
+          <Route path="/dhikr" element={<PublicDhikrPage />} />
+          
+          {/* Protected Profile Route (Protected via LoginGate when unauthenticated) */}
+          <Route path="/profile" element={<ProtectedProfilePage />} />
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
       {/* Persistent Audio Player Floating Bar */}
@@ -103,10 +118,12 @@ const MainContent: React.FC = () => {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AppProvider>
-        <MainContent />
-      </AppProvider>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <AppProvider>
+          <MainLayout />
+        </AppProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }

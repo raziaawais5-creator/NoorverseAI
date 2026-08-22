@@ -4,8 +4,9 @@ import { ALL_SURAHS_LIST } from './surahsList';
 export { ALL_SURAHS_LIST };
 
 export const RECITERS = [
+  { id: 'abdulbasit', name: 'Abdul Basit Abdul Samad', style: 'Murattal', subfolder: 'AbdulSamad_64kbps_QuranExplorer.com' },
   { id: 'mishary', name: 'Mishary Rashid Alafasy', style: 'Murattal', subfolder: 'Alafasy_128kbps' },
-  { id: 'sudais', name: 'Abdul Rahman Al-Sudais', style: 'Hadr', subfolder: 'AbdulSamad_64kbps_QuranExplorer.com' },
+  { id: 'sudais', name: 'Abdul Rahman Al-Sudais', style: 'Hadr', subfolder: 'Abdurrahmaan_As-Sudais_192kbps' },
   { id: 'ghamdi', name: 'Saad Al-Ghamdi', style: 'Murattal', subfolder: 'Ghamadi_40kbps' },
   { id: 'shatri', name: 'Abu Bakr Al-Shatri', style: 'Murattal', subfolder: 'Abu_Bakr_Ash-Shaatree_128kbps' },
 ];
