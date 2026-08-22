@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://noorverse-ai.vercel.app/</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
   <url>
     <loc>https://noorverse-ai.vercel.app/quran</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
   <url>
     <loc>https://noorverse-ai.vercel.app/tajweed</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
   <url>
     <loc>https://noorverse-ai.vercel.app/ai-quran</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
   <url>
     <loc>https://noorverse-ai.vercel.app/quran-tafsir</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
   <url>
     <loc>https://noorverse-ai.vercel.app/quran-pronunciation</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
   <url>
     <loc>https://noorverse-ai.vercel.app/arabic-roots</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
   <url>
     <loc>https://noorverse-ai.vercel.app/islamic-learning</loc>
     <lastmod>2026-08-22</lastmod>
   </url>
-
+  <url>
+    <loc>https://noorverse-ai.vercel.app/learn</loc>
+    <lastmod>2026-08-22</lastmod>
+  </url>
+  <url>
+    <loc>https://noorverse-ai.vercel.app/prayer</loc>
+    <lastmod>2026-08-22</lastmod>
+  </url>
+  <url>
+    <loc>https://noorverse-ai.vercel.app/dhikr</loc>
+    <lastmod>2026-08-22</lastmod>
+  </url>
 </urlset>
