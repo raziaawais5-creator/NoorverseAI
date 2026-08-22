@@ -77,6 +77,21 @@ export const PublicHomePage: React.FC = () => {
           </Link>
 
           <Link
+            to="/noorani-qaida"
+            className="p-5 rounded-2xl bg-white dark:bg-[#18221D] border border-emerald-900/10 dark:border-emerald-500/15 shadow-sm hover:border-emerald-500/40 transition-all space-y-2 group"
+          >
+            <div className="w-9 h-9 rounded-xl bg-amber-400/15 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <GraduationCap className="w-4 h-4" />
+            </div>
+            <h3 className="text-sm font-bold text-emerald-950 dark:text-emerald-50">
+              Interactive Noorani Qaida
+            </h3>
+            <p className="text-xs text-emerald-800/70 dark:text-emerald-300/70 leading-relaxed">
+              15 audio-enabled lessons with Arabic alphabets, Makharij articulation points, and quizzes.
+            </p>
+          </Link>
+
+          <Link
             to="/tajweed"
             className="p-5 rounded-2xl bg-white dark:bg-[#18221D] border border-emerald-900/10 dark:border-emerald-500/15 shadow-sm hover:border-emerald-500/40 transition-all space-y-2 group"
           >
@@ -84,10 +99,10 @@ export const PublicHomePage: React.FC = () => {
               <GraduationCap className="w-4 h-4" />
             </div>
             <h3 className="text-sm font-bold text-emerald-950 dark:text-emerald-50">
-              AI Tajweed & Noorani Qaida
+              AI Tajweed Mastery
             </h3>
             <p className="text-xs text-emerald-800/70 dark:text-emerald-300/70 leading-relaxed">
-              15 interactive lessons covering articulation points (Makharij), Noon Sakinah, and Qalqalah.
+              In-depth guides for Ghunnah, Qalqalah, Noon Sakinah, and Madd recitation rules.
             </p>
           </Link>
 

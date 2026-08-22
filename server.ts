@@ -46,7 +46,7 @@ Please structure your response in clear sections:
 Keep the tone peaceful, reverent, and educational.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash",
+      model: "gemini-3.7-flash",
       contents: prompt,
       config: {
         systemInstruction: "You are an Islamic education assistant. Ensure all responses are deeply respectful, peaceful, accurate, and clearly labeled as educational AI insights.",
@@ -85,7 +85,7 @@ Return a structured breakdown of up to 4 significant Arabic words in JSON format
 ]`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash",
+      model: "gemini-3.7-flash",
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -120,10 +120,11 @@ Return JSON in this format:
       "explanation": "Brief explanation of the correct answer"
     }
   ]
-}`;
+}
+`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash",
+      model: "gemini-3.7-flash",
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -146,7 +147,7 @@ app.post("/api/gemini/learning-tip", async (req, res) => {
     const prompt = `Give a concise, practical 2-sentence Quran learning or Tajweed tip for a user at the ${userLevel} level. Focus on memorization, pronunciation, or spiritual focus during recitation.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash",
+      model: "gemini-3.7-flash",
       contents: prompt,
     });
 
@@ -206,7 +207,7 @@ Return JSON strictly in this format:
     contents.push(textPrompt);
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash",
+      model: "gemini-3.7-flash",
       contents: contents,
       config: {
         responseMimeType: "application/json",

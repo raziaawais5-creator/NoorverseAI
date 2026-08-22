@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GraduationCap, BookOpen, Target, Mic, Sparkles, ArrowRight, Award } from 'lucide-react';
 import { NooraniQaidaView } from './NooraniQaidaView';
 import { TajweedLessonView } from './TajweedLessonView';
@@ -6,6 +7,7 @@ import { useApp } from '../../context/AppContext';
 import { AiPronunciationModal } from '../common/AiPronunciationModal';
 
 export const LearnScreen: React.FC = () => {
+  const navigate = useNavigate();
   const { setActiveTab } = useApp();
   const [subModule, setSubModule] = useState<'hub' | 'qaida' | 'tajweed' | 'mic'>('hub');
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
@@ -29,7 +31,9 @@ export const LearnScreen: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Noorani Qaida Card */}
         <div
-          onClick={() => setSubModule('qaida')}
+          onClick={() => {
+            navigate('/noorani-qaida');
+          }}
           className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-950 p-6 text-white shadow-md hover:shadow-xl transition-all cursor-pointer space-y-4 border border-emerald-500/20"
         >
           <div className="flex items-center justify-between">
@@ -37,15 +41,15 @@ export const LearnScreen: React.FC = () => {
               أ ب
             </div>
             <span className="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold border border-amber-400/30">
-              28 Letters
+              15 Chapters
             </span>
           </div>
           <div>
             <h3 className="text-xl font-bold text-emerald-50 group-hover:text-amber-300 transition-colors">
-              Noorani Qaida & Makharij
+              Interactive Noorani Qaida
             </h3>
             <p className="text-xs text-emerald-200/80 mt-1">
-              Learn individual Arabic letters, isolated & connected forms, and precise points of articulation.
+              15 audio-enabled lessons covering Arabic alphabets, Makharij articulation points, vowels, and Tanween.
             </p>
           </div>
           <div className="flex items-center text-xs font-bold text-amber-300 group-hover:translate-x-1 transition-transform">
@@ -55,7 +59,9 @@ export const LearnScreen: React.FC = () => {
 
         {/* Tajweed Rules Card */}
         <div
-          onClick={() => setSubModule('tajweed')}
+          onClick={() => {
+            navigate('/tajweed');
+          }}
           className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-teal-900 to-emerald-950 p-6 text-white shadow-md hover:shadow-xl transition-all cursor-pointer space-y-4 border border-emerald-500/20"
         >
           <div className="flex items-center justify-between">
@@ -63,7 +69,7 @@ export const LearnScreen: React.FC = () => {
               <Target className="w-6 h-6" />
             </div>
             <span className="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold border border-amber-400/30">
-              Core Rules
+              Tajweed Rules
             </span>
           </div>
           <div>
@@ -120,7 +126,10 @@ export const LearnScreen: React.FC = () => {
 
       {/* AI Quiz Hub Launcher Card */}
       <div
-        onClick={() => setActiveTab('ai')}
+        onClick={() => {
+          setActiveTab('ai');
+          navigate('/ai-quran');
+        }}
         className="rounded-3xl bg-gradient-to-r from-amber-500/15 to-emerald-500/15 p-6 border border-amber-500/30 flex items-center justify-between cursor-pointer group hover:shadow-md transition-all"
       >
         <div className="space-y-1">

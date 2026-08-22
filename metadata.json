@@ -1,6 +1,6 @@
 {
   "name": "NoorVerse – AI Quran Companion",
   "description": "A modern, elegant, AI-assisted Quran learning application with prayer times, tajweed lessons, word-by-word translation, tafsir, digital tasbeeh, and AI insights.",
-  "requestFramePermissions": ["geolocation"],
+  "requestFramePermissions": ["geolocation", "microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

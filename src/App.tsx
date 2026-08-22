@@ -13,6 +13,7 @@ import { PublicTafsirPage } from './components/seo/PublicTafsirPage';
 import { PublicPronunciationPage } from './components/seo/PublicPronunciationPage';
 import { PublicArabicRootsPage } from './components/seo/PublicArabicRootsPage';
 import { PublicIslamicLearningPage } from './components/seo/PublicIslamicLearningPage';
+import { PublicNooraniQaidaPage } from './components/seo/PublicNooraniQaidaPage';
 import { PublicLearnPage } from './components/seo/PublicLearnPage';
 import { PublicPrayerPage } from './components/seo/PublicPrayerPage';
 import { PublicDhikrPage } from './components/seo/PublicDhikrPage';
@@ -46,6 +47,14 @@ const MainLayout: React.FC = () => {
           <Route path="/quran-pronunciation" element={<PublicPronunciationPage />} />
           <Route path="/arabic-roots" element={<PublicArabicRootsPage />} />
           <Route path="/islamic-learning" element={<PublicIslamicLearningPage />} />
+          
+          {/* Noorani Qaida Dedicated & Alias Routes */}
+          <Route path="/noorani-qaida" element={<PublicNooraniQaidaPage />} />
+          <Route path="/interactive-noorani-qaida" element={<PublicNooraniQaidaPage />} />
+          <Route path="/qaida" element={<Navigate to="/noorani-qaida" replace />} />
+          <Route path="/nooraniqaida" element={<Navigate to="/noorani-qaida" replace />} />
+          <Route path="/learn/noorani-qaida" element={<PublicNooraniQaidaPage />} />
+          <Route path="/learn/qaida" element={<Navigate to="/noorani-qaida" replace />} />
 
           {/* Standard Navigation Routes */}
           <Route path="/learn" element={<PublicLearnPage />} />

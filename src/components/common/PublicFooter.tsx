@@ -133,7 +133,7 @@ export const PublicFooter: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/learn"
+                  to="/noorani-qaida"
                   className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors flex items-center space-x-1.5"
                 >
                   <GraduationCap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />

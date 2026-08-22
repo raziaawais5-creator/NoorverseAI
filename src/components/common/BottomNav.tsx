@@ -30,7 +30,7 @@ export const BottomNav: React.FC = () => {
             path === item.path ||
             (item.id === 'home' && path === '/') ||
             (item.id === 'quran' && (path === '/quran' || path === '/quran-tafsir' || path === '/arabic-roots')) ||
-            (item.id === 'learn' && (path === '/learn' || path === '/tajweed' || path === '/quran-pronunciation' || path === '/islamic-learning')) ||
+            (item.id === 'learn' && (path === '/learn' || path === '/noorani-qaida' || path === '/interactive-noorani-qaida' || path === '/tajweed' || path === '/quran-pronunciation' || path === '/islamic-learning')) ||
             (item.id === 'ai' && (path === '/ai' || path === '/ai-quran')) ||
             (item.id === 'prayer' && path === '/prayer') ||
             (item.id === 'dhikr' && path === '/dhikr') ||

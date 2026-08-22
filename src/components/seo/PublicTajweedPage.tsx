@@ -48,6 +48,13 @@ export const PublicTajweedPage: React.FC = () => {
           {/* Quick Navigation Links */}
           <div className="flex flex-wrap gap-2 pt-2 text-xs font-semibold">
             <Link
+              to="/noorani-qaida"
+              className="px-3 py-1.5 rounded-xl bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 border border-amber-400/40 transition-all flex items-center space-x-1.5"
+            >
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>Interactive Noorani Qaida</span>
+            </Link>
+            <Link
               to="/quran-pronunciation"
               className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-amber-300 border border-white/15 transition-all flex items-center space-x-1.5"
             >

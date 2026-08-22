@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
   Volume2,
@@ -45,7 +46,8 @@ interface QaidaProgressData {
   practicedItems: string[];
 }
 
-export const NooraniQaidaView: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+export const NooraniQaidaView: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
+  const navigate = useNavigate();
   const [activeChapterId, setActiveChapterId] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<'cards' | 'quiz'>('cards');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -353,7 +355,11 @@ export const NooraniQaidaView: React.FC<{ onBack: () => void }> = ({ onBack }) =
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
-    onBack();
+    if (onBack) {
+      onBack();
+    } else {
+      navigate('/learn');
+    }
   };
 
   return (

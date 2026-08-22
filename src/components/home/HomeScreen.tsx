@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Flame,
   BookOpen,
@@ -23,6 +24,7 @@ import { fetchLearningTip } from '../../services/api';
 import { GeometricPattern } from '../common/GeometricPattern';
 
 export const HomeScreen: React.FC = () => {
+  const navigate = useNavigate();
   const { setActiveTab, setActiveSurahNumber, setActiveAyahNumber, userStats, playAudioVerse, pauseAudioVerse, audioState } = useApp();
   const { readerSettings } = useTheme();
 
@@ -117,7 +119,10 @@ export const HomeScreen: React.FC = () => {
       <div>
         {/* Next Prayer Countdown Card */}
         <div
-          onClick={() => setActiveTab('prayer')}
+          onClick={() => {
+            setActiveTab('prayer');
+            navigate('/prayer');
+          }}
           className="group relative overflow-hidden rounded-2xl bg-white dark:bg-[#132035] p-5 border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:shadow-md transition-all cursor-pointer"
         >
           <div className="flex items-center justify-between mb-3">
@@ -155,7 +160,10 @@ export const HomeScreen: React.FC = () => {
 
       {/* Noorani Qaida & Tajweed Quick Access Banner */}
       <div
-        onClick={() => setActiveTab('learn')}
+        onClick={() => {
+          setActiveTab('learn');
+          navigate('/noorani-qaida');
+        }}
         className="group relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-teal-900 to-emerald-950 p-6 text-white shadow-lg hover:shadow-xl transition-all cursor-pointer border border-emerald-500/20 space-y-3"
       >
         <div className="flex items-center justify-between">
@@ -169,7 +177,7 @@ export const HomeScreen: React.FC = () => {
                   Interactive Noorani Qaida
                 </h3>
                 <span className="px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold text-[10px] border border-amber-400/30 uppercase tracking-wider">
-                  8 Lessons
+                  15 Chapters • Audio & Makharij
                 </span>
               </div>
               <p className="text-xs text-emerald-200/80 mt-0.5">
@@ -360,7 +368,10 @@ export const HomeScreen: React.FC = () => {
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <button
-            onClick={() => setActiveTab('quran')}
+            onClick={() => {
+              setActiveTab('quran');
+              navigate('/quran');
+            }}
             className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
@@ -371,18 +382,24 @@ export const HomeScreen: React.FC = () => {
           </button>
 
           <button
-            onClick={() => setActiveTab('learn')}
+            onClick={() => {
+              setActiveTab('learn');
+              navigate('/noorani-qaida');
+            }}
             className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
               <Target className="w-5 h-5" />
             </div>
-            <span className="text-xs font-bold text-[#1F3A5F] dark:text-[#F7F9FC]">Tajweed Rules</span>
+            <span className="text-xs font-bold text-[#1F3A5F] dark:text-[#F7F9FC]">Tajweed & Qaida</span>
             <span className="text-[10px] text-[#6E8FB5] dark:text-[#C7CEDB]/80 mt-0.5">Interactive</span>
           </button>
 
           <button
-            onClick={() => setActiveTab('dhikr')}
+            onClick={() => {
+              setActiveTab('dhikr');
+              navigate('/dhikr');
+            }}
             className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
@@ -393,7 +410,10 @@ export const HomeScreen: React.FC = () => {
           </button>
 
           <button
-            onClick={() => setActiveTab('ai')}
+            onClick={() => {
+              setActiveTab('ai');
+              navigate('/ai-quran');
+            }}
             className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
