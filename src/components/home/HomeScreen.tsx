@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Flame,
   BookOpen,
@@ -118,12 +118,10 @@ export const HomeScreen: React.FC = () => {
       {/* Prayer Countdown Card */}
       <div>
         {/* Next Prayer Countdown Card */}
-        <div
-          onClick={() => {
-            setActiveTab('prayer');
-            navigate('/prayer');
-          }}
-          className="group relative overflow-hidden rounded-2xl bg-white dark:bg-[#132035] p-5 border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:shadow-md transition-all cursor-pointer"
+        <Link
+          to="/prayer"
+          onClick={() => setActiveTab('prayer')}
+          className="group block relative overflow-hidden rounded-2xl bg-white dark:bg-[#132035] p-5 border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:shadow-md transition-all cursor-pointer"
         >
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-2">
@@ -155,16 +153,14 @@ export const HomeScreen: React.FC = () => {
               <div className="text-[11px] text-[#6E8FB5] dark:text-[#C7CEDB]">Qibla: 118.9° E</div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Noorani Qaida & Tajweed Quick Access Banner */}
-      <div
-        onClick={() => {
-          setActiveTab('learn');
-          navigate('/noorani-qaida');
-        }}
-        className="group relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-teal-900 to-emerald-950 p-6 text-white shadow-lg hover:shadow-xl transition-all cursor-pointer border border-emerald-500/20 space-y-3"
+      <Link
+        to="/noorani-qaida"
+        onClick={() => setActiveTab('learn')}
+        className="group block relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-teal-900 to-emerald-950 p-6 text-white shadow-lg hover:shadow-xl transition-all cursor-pointer border border-emerald-500/20 space-y-3"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -190,7 +186,7 @@ export const HomeScreen: React.FC = () => {
             <GraduationCap className="w-5 h-5" />
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Daily Verse of the Day */}
       <div className="rounded-3xl bg-white dark:bg-[#132035] p-6 border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm space-y-4">
@@ -367,61 +363,53 @@ export const HomeScreen: React.FC = () => {
           Quick Actions
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <button
-            onClick={() => {
-              setActiveTab('quran');
-              navigate('/quran');
-            }}
-            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
+          <Link
+            to="/quran"
+            onClick={() => setActiveTab('quran')}
+            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group cursor-pointer"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
               <BookOpen className="w-5 h-5" />
             </div>
             <span className="text-xs font-bold text-[#1F3A5F] dark:text-[#F7F9FC]">Surah Catalog</span>
             <span className="text-[10px] text-[#6E8FB5] dark:text-[#C7CEDB]/80 mt-0.5">114 Surahs</span>
-          </button>
+          </Link>
 
-          <button
-            onClick={() => {
-              setActiveTab('learn');
-              navigate('/noorani-qaida');
-            }}
-            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
+          <Link
+            to="/noorani-qaida"
+            onClick={() => setActiveTab('learn')}
+            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group cursor-pointer"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
               <Target className="w-5 h-5" />
             </div>
             <span className="text-xs font-bold text-[#1F3A5F] dark:text-[#F7F9FC]">Tajweed & Qaida</span>
             <span className="text-[10px] text-[#6E8FB5] dark:text-[#C7CEDB]/80 mt-0.5">Interactive</span>
-          </button>
+          </Link>
 
-          <button
-            onClick={() => {
-              setActiveTab('dhikr');
-              navigate('/dhikr');
-            }}
-            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
+          <Link
+            to="/dhikr"
+            onClick={() => setActiveTab('dhikr')}
+            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group cursor-pointer"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
               <Compass className="w-5 h-5" />
             </div>
             <span className="text-xs font-bold text-[#1F3A5F] dark:text-[#F7F9FC]">Digital Tasbeeh</span>
             <span className="text-[10px] text-[#6E8FB5] dark:text-[#C7CEDB]/80 mt-0.5">Dhikr Counter</span>
-          </button>
+          </Link>
 
-          <button
-            onClick={() => {
-              setActiveTab('ai');
-              navigate('/ai-quran');
-            }}
-            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group"
+          <Link
+            to="/ai-quran"
+            onClick={() => setActiveTab('ai')}
+            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-[#132035] border border-[#C7CEDB]/40 dark:border-[#1F3A5F]/60 shadow-sm hover:border-[#6E8FB5] hover:shadow transition-all group cursor-pointer"
           >
             <div className="w-10 h-10 rounded-xl bg-[#6E8FB5]/15 dark:bg-[#1F3A5F] text-[#1F3A5F] dark:text-[#C7CEDB] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
               <Sparkles className="w-5 h-5" />
             </div>
             <span className="text-xs font-bold text-[#1F3A5F] dark:text-[#F7F9FC]">AI Quizzes</span>
             <span className="text-[10px] text-[#6E8FB5] dark:text-[#C7CEDB]/80 mt-0.5">Test Knowledge</span>
-          </button>
+          </Link>
         </div>
       </div>
     </div>
