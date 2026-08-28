@@ -1,10 +1,29 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Volume2, Sparkles, CheckCircle2, BookOpen } from 'lucide-react';
+import { ArrowLeft, Volume2, Sparkles, CheckCircle2, BookOpen, Play } from 'lucide-react';
 import { TAJWEED_LESSONS } from '../../data/learnData';
 import { TajweedLesson } from '../../types';
+import { playQaidaPronunciation } from '../../utils/qaidaAudio';
 
 export const TajweedLessonView: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [activeLesson, setActiveLesson] = useState<TajweedLesson>(TAJWEED_LESSONS[0]);
+  const [playingIdx, setPlayingIdx] = useState<number | null>(null);
+
+  const handlePlayExample = (arabicText: string, idx: number) => {
+    setPlayingIdx(idx);
+    playQaidaPronunciation(
+      arabicText,
+      {
+        selectedVoiceId: 'husary_muallim',
+        speedRate: 0.8,
+        pitch: 0.92,
+        volume: 1.0,
+        playChime: true,
+      },
+      () => {
+        setPlayingIdx(null);
+      }
+    );
+  };
 
   return (
     <div className="space-y-6 pb-28 px-4 pt-3 max-w-4xl mx-auto">
@@ -88,12 +107,26 @@ export const TajweedLessonView: React.FC<{ onBack: () => void }> = ({ onBack }) 
           {activeLesson.examples.map((ex, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-white dark:bg-[#18221D] border border-emerald-900/10 dark:border-emerald-500/15 shadow-sm space-y-2"
+              className="p-5 rounded-2xl bg-white dark:bg-[#18221D] border border-emerald-900/10 dark:border-emerald-500/15 shadow-sm space-y-3"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-amber-600 dark:text-amber-400">
-                  {ex.transliteration}
-                </span>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => handlePlayExample(ex.arabic, idx)}
+                    className={`p-2 rounded-xl border flex items-center justify-center transition-all ${
+                      playingIdx === idx
+                        ? 'bg-amber-400 text-emerald-950 border-amber-500 scale-105 shadow'
+                        : 'bg-emerald-50 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 border-emerald-900/15 dark:border-emerald-500/20 hover:border-amber-400'
+                    }`}
+                    title="Listen to pronunciation"
+                    aria-label={`Listen to ${ex.transliteration}`}
+                  >
+                    <Volume2 className={`w-4 h-4 ${playingIdx === idx ? 'animate-bounce text-emerald-950' : 'text-amber-500'}`} />
+                  </button>
+                  <span className="text-xs font-semibold text-amber-600 dark:text-amber-400">
+                    {ex.transliteration}
+                  </span>
+                </div>
                 <span className="font-serif text-2xl font-bold text-emerald-950 dark:text-emerald-50 dir-rtl">
                   {ex.arabic}
                 </span>

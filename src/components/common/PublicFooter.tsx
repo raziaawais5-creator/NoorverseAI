@@ -147,12 +147,15 @@ export const PublicFooter: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-6 border-t border-[#C7CEDB]/30 dark:border-[#1F3A5F]/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#6E8FB5] dark:text-[#C7CEDB]/60">
           <p>© {new Date().getFullYear()} NoorVerse AI. Dedicated to accessible Quranic & Islamic education.</p>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Link to="/quran" className="hover:underline">Quran</Link>
+            <Link to="/noorani-qaida" className="hover:underline">Noorani Qaida</Link>
             <Link to="/tajweed" className="hover:underline">Tajweed</Link>
             <Link to="/ai-quran" className="hover:underline">AI Assistant</Link>
             <Link to="/arabic-roots" className="hover:underline">Roots</Link>
             <Link to="/islamic-learning" className="hover:underline">Curriculum</Link>
+            <Link to="/about" className="hover:underline">About</Link>
+            <Link to="/contact" className="hover:underline">Contact</Link>
           </div>
         </div>
       </div>

@@ -17,6 +17,8 @@ import { PublicNooraniQaidaPage } from './components/seo/PublicNooraniQaidaPage'
 import { PublicLearnPage } from './components/seo/PublicLearnPage';
 import { PublicPrayerPage } from './components/seo/PublicPrayerPage';
 import { PublicDhikrPage } from './components/seo/PublicDhikrPage';
+import { PublicAboutPage } from './components/seo/PublicAboutPage';
+import { PublicContactPage } from './components/seo/PublicContactPage';
 import { ProtectedProfilePage } from './components/profile/ProtectedProfilePage';
 import { Play, Pause, X, Volume2, SkipBack, SkipForward } from 'lucide-react';
 
@@ -61,6 +63,14 @@ const MainLayout: React.FC = () => {
           <Route path="/prayer" element={<PublicPrayerPage />} />
           <Route path="/dhikr" element={<PublicDhikrPage />} />
           
+          {/* About & Contact Routes */}
+          <Route path="/about" element={<PublicAboutPage />} />
+          <Route path="/about-us" element={<Navigate to="/about" replace />} />
+          <Route path="/contact" element={<PublicContactPage />} />
+          <Route path="/contact-us" element={<Navigate to="/contact" replace />} />
+          <Route path="/support" element={<Navigate to="/contact" replace />} />
+          <Route path="/feedback" element={<Navigate to="/contact" replace />} />
+
           {/* Protected Profile Route (Protected via LoginGate when unauthenticated) */}
           <Route path="/profile" element={<ProtectedProfilePage />} />
 
