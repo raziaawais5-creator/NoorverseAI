@@ -9,17 +9,64 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+// Support larger payloads (such as recorded recitation audio in base64)
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
-// Initialize Gemini API client server-side
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY || "",
-  httpOptions: {
-    headers: {
-      "User-Agent": "aistudio-build",
-    },
-  },
-});
+// Lazy-initialized Gemini API client server-side
+let aiClient: GoogleGenAI | null = null;
+function getGenAI(): GoogleGenAI {
+  if (!aiClient) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY environment variable is missing.");
+    }
+    aiClient = new GoogleGenAI({
+      apiKey,
+      httpOptions: {
+        headers: {
+          "User-Agent": "aistudio-build",
+        },
+      },
+    });
+  }
+  return aiClient;
+}
+
+// Resilient helper with automatic fallback for temporary high-demand spikes
+async function generateGeminiContent(options: {
+  contents: any;
+  config?: any;
+}) {
+  const ai = getGenAI();
+  const modelsToTry = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-flash-latest"];
+  let lastError: any = null;
+
+  for (const model of modelsToTry) {
+    try {
+      const response = await ai.models.generateContent({
+        model,
+        contents: options.contents,
+        config: options.config,
+      });
+      return response;
+    } catch (err: any) {
+      lastError = err;
+      const isRecoverable =
+        err.status === "UNAVAILABLE" ||
+        err.message?.includes("503") ||
+        err.message?.includes("404") ||
+        err.message?.includes("high demand") ||
+        err.message?.includes("not available");
+      if (isRecoverable) {
+        console.warn(`[Gemini] ${model} unavailable, trying fallback...`);
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastError;
+}
 
 // API Routes
 app.get("/api/health", (_req, res) => {
@@ -45,8 +92,7 @@ Please structure your response in clear sections:
 
 Keep the tone peaceful, reverent, and educational.`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
+    const response = await generateGeminiContent({
       contents: prompt,
       config: {
         systemInstruction: "You are an Islamic education assistant. Ensure all responses are deeply respectful, peaceful, accurate, and clearly labeled as educational AI insights.",
@@ -84,8 +130,7 @@ Return a structured breakdown of up to 4 significant Arabic words in JSON format
   }
 ]`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
+    const response = await generateGeminiContent({
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -123,8 +168,7 @@ Return JSON in this format:
 }
 `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
+    const response = await generateGeminiContent({
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -146,8 +190,7 @@ app.post("/api/gemini/learning-tip", async (req, res) => {
 
     const prompt = `Give a concise, practical 2-sentence Quran learning or Tajweed tip for a user at the ${userLevel} level. Focus on memorization, pronunciation, or spiritual focus during recitation.`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
+    const response = await generateGeminiContent({
       contents: prompt,
     });
 
@@ -206,8 +249,7 @@ Return JSON strictly in this format:
 
     contents.push(textPrompt);
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
+    const response = await generateGeminiContent({
       contents: contents,
       config: {
         responseMimeType: "application/json",
